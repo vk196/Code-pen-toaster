@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+body {
+  padding: 0;
+  margin: 0;
+}
+.wrapper {
+  --border: 7px solid black;
+  background-image: linear-gradient(0deg, blue, teal);
+  height: 100vh;
+}
+.toast__container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.toast__body {
+  width: 380px;
+  height: 220px;
+  border: var(--border);
+  border-radius: 2.3em;
+  background: hsl(226, 12%, 65%);
+  position: relative;
+  overflow: hidden;
+}
+.toast__controls {
+  width: 70%;
+  height: 70%;
+  border-right: var(--border);
+  border-left: var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-inline: auto;
+}
+.toast__indicator {
+  margin: 8px;
+}
+.indicator__lights {
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  border: var(--border);
+}
+.red {
+  background: red;
+  z-index: 1;
+}
+.green {
+  background: rgb(5, 238, 5);
+  z-index: 0;
+}
+.left__shape {
+  height: 7px;
+  width: 70px;
+  background: #000;
+  display: block;
+  border-radius: 0 50px 50px 0;
+}
+.controls__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 1.7em;
+}
+.toast__indicator {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+  margin-right: 1em;
+}
