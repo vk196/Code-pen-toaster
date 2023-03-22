@@ -1,4 +1,10 @@
-* {
+:root {
+  --border: 7px solid black;
+  --secondary-bg: hsl(198, 22%, 24%);
+  --handle-shadow: hsl(197, 19%, 14%);
+}
+*,
+img {
   box-sizing: border-box;
   max-width: 100%;
 }
@@ -7,7 +13,6 @@ body {
   margin: 0;
 }
 .wrapper {
-  --border: 7px solid black;
   background-image: linear-gradient(0deg, blue, teal);
   height: 100vh;
 }
@@ -23,6 +28,7 @@ body {
   border: var(--border);
   border-radius: 2.3em;
   background: hsl(226, 12%, 65%);
+  box-shadow: inset 6px 6px 1px hsl(224, 6%, 43%);
   position: relative;
   overflow: hidden;
 }
@@ -38,20 +44,60 @@ body {
 }
 .toast__indicator {
   margin: 8px;
+  z-index: 0;
 }
 .indicator__lights {
   width: 33px;
   height: 33px;
   border-radius: 50%;
   border: var(--border);
+  cursor: pointer;
 }
 .red {
-  background: red;
-  z-index: 1;
+  background: rgb(255, 36, 36);
+  position: relative;
+}
+.red::before {
+  content: "";
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  background: inherit;
+  position: absolute;
+  inset: 50% 50%;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  transition: all 100ms ease-out;
+}
+.red:hover::before {
+  filter: blur(17px);
 }
 .green {
   background: rgb(5, 238, 5);
-  z-index: 0;
+  position: relative;
+}
+.green::before {
+  content: "";
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  background: inherit;
+  position: absolute;
+  z-index: -1;
+  inset: 50% 50% 0;
+  transform: translate(-50%, -50%);
+  animation: blink 3s linear infinite;
+}
+
+/* Animations */
+@keyframes blink {
+  from {
+    filter: blur(17px);
+    width: 50px;
+  }
+  to {
+    filter: blur(0);
+  }
 }
 .left__shape {
   height: 7px;
@@ -70,4 +116,121 @@ body {
   flex-direction: column;
   gap: 0.7em;
   margin-right: 1em;
+}
+.handle__wrapper {
+  position: relative;
+  bottom: 100px;
+  right: -375px;
+  width: 80px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  transform-origin: left;
+  transform: rotate(20deg);
+  transition: transform 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.handle__wrapper.active {
+  transform: rotate(-20deg);
+}
+.toast__handle {
+  width: 72%;
+  max-width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: var(--secondary-bg);
+  box-shadow: inset 4px 4px 1px var(--handle-shadow);
+  border: var(--border);
+  order: 2;
+}
+.after {
+  width: 28%;
+  height: 7px;
+  background: #000;
+  order: 1;
+  z-index: -1;
+  margin-right: -2px;
+}
+.toast__legs {
+  width: 74px;
+  height: 46px;
+  background: var(--secondary-bg);
+  box-shadow: inset 4px 4px 1px var(--handle-shadow);
+  border: var(--border);
+  display: inline-block;
+  position: absolute;
+  bottom: 16px;
+}
+.left {
+  left: 68px;
+}
+.right {
+  right: 68px;
+}
+.bread {
+  width: 170px;
+  height: 105px;
+  background: #c5ad70;
+  margin: 0 auto;
+  border-right: var(--border);
+  border-left: var(--border);
+  position: relative;
+}
+.bread::before {
+  content: "";
+  position: absolute;
+  width: 185px;
+  height: 38px;
+  border: var(--border);
+  border-radius: 12px;
+  background: inherit;
+  top: -45px;
+  left: 50%;
+  transform: translatex(-50%);
+  z-index: -999;
+}
+.bread--line {
+  display: block;
+  width: 40%;
+  height: 6px;
+  background: #000;
+  transform: rotate(-22deg);
+  margin-bottom: 1em;
+  margin-inline: auto;
+  border-radius: 8em;
+  z-index: -1;
+}
+.bread img {
+  display: block;
+  position: absolute;
+  width: 40%;
+  top: -115px;
+  right: 36%;
+  animation: steam 3s ease-in-out infinite;
+  transition: all 0.3s linear;
+}
+
+@keyframes steam {
+  from {
+    width: 42%;
+    opacity: 1;
+  }
+  to {
+    width: 40%;
+    opacity: 0.2;
+  }
+}
+.socials__handle {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 0.3em;
+  z-index: 100;
+  margin-top: 2em;
+}
+.social {
+  width: 40px;
+  height: 40px;
+  border: var(--border);
+  border-radius: 50%;
+  background: lightblue;
 }
